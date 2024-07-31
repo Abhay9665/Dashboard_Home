@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Chart.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
+    <style>
+        /* Custom styles */
+        body {
+            padding-top: 50px;
+            /* To avoid content hidden behind fixed navbar */
+            background-color: #f4f6f9;
+            /* Light gray-blue background color */
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            margin-bottom: 20px;
+            background: #ffffff;
+            /* Card background color */
+        }
+
+        .card-header {
+            padding: 0;
+            border-bottom: none;
+            background-color: #ffffff;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .card-header .nav-tabs>li.active>a {
+            /* Active tab background color */
+            border-bottom: 2px solid #007dff;
+            color: black !important;
+            /* Active tab text color */
+        }
+
+        .card-header .nav-tabs>li>a {
+            color: #000000 !important;
+            /* Inactive tab text color */
+        }
+
+    
+
+        .tab-content {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px 85px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        .tab-content h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            margin: 10px 100px;
+            transition: transform 0.4s, box-shadow 0.4s;
+            background: #ffffff;
+            /* Card background color */
+        }
+
+        .card-hover-eff:hover {
+            transform: translateY(-10px);
+            /* Moves the card up on hover */
+            box-shadow: 0 16px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        .card-img-top {
+            border-radius: 12px 12px 0 0;
+            height: 200px;
+            object-fit: cover;
+            /* Ensures the image covers the area */
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        .card-text {
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            font-size: 1em;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004494;
+        }
+
+        .progress-bar {
+            background-color: #007bff;
+        }
+
+        table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        table tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Content -->
+    <div class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
+                        <li><a href="#training" data-toggle="tab">Training</a></li>
+                        <li><a href="#history" data-toggle="tab">History</a></li>
+                    </ul>
+                </div>
+            </div>
+        <!-- Navbar -->
+        <div class="card">
+           
+            <div class="tab-content">
+                <!-- Dashboard Tab -->
+                <div class="tab-pane fade in active" id="dashboard">
+                    <h2>Dashboard</h2>
+                    <div class="row">
+                        <!-- Card 1: Current Progress -->
+                        <div class="col-sm-8">
+                            <div class="card card-hover-eff">
+                                <div class="card-body">
+                                    <h4 class="card-title">Current Progress</h4>
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" style="width: 70%;"
+                                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+                                            70%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2: Pie Chart -->
+                        <div class="col-sm-4">
+                            <div class="card card-hover-eff">
+                                <div class="card-body">
+                                    <h4 class="card-title">Pie Chart</h4>
+                                    <canvas id="pieChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3: Data Table -->
+                        <!-- <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Data Table</h4>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Age</th>
+                                            <th>City</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>John Doe</td>
+                                            <td>28</td>
+                                            <td>New York</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Jane Smith</td>
+                                            <td>32</td>
+                                            <td>Los Angeles</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Emily Johnson</td>
+                                            <td>25</td>
+                                            <td>Chicago</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Michael Brown</td>
+                                            <td>40</td>
+                                            <td>San Francisco</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div> -->
+                    </div>
+                    <!-- Full-Width Table -->
+                    <div class="card card-hover-eff">
+                        <div class="card-body">
+                            <h4 class="card-title">Detailed Data Table</h4>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>John</td>
+                                        <td>Doe</td>
+                                        <td>john.doe@example.com</td>
+                                        <td>(123) 456-7890</td>
+                                        <td>123 Elm St, New York, NY</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jane</td>
+                                        <td>Smith</td>
+                                        <td>jane.smith@example.com</td>
+                                        <td>(987) 654-3210</td>
+                                        <td>456 Oak St, Los Angeles, CA</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Emily</td>
+                                        <td>Johnson</td>
+                                        <td>emily.johnson@example.com</td>
+                                        <td>(555) 123-4567</td>
+                                        <td>789 Pine St, Chicago, IL</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Michael</td>
+                                        <td>Brown</td>
+                                        <td>michael.brown@example.com</td>
+                                        <td>(444) 555-6789</td>
+                                        <td>101 Maple St, San Francisco, CA</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Training Tab -->
+                <div class="tab-pane fade" id="training">
+                    <h2>Training</h2>
+                    <p>Training content goes here.</p>
+                    <!-- Add additional cards, charts, or information as needed for this tab -->
+                </div>
+                <!-- History Tab -->
+                <div class="tab-pane fade" id="history">
+                    <h2>History</h2>
+                    <p>History content goes here.</p>
+                    <!-- Add additional cards, charts, or information as needed for this tab -->
+                </div>
+            </div>
+        </div>
+
+        <!-- jQuery, Bootstrap JS, and Chart.js -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+        <script>
+            // Pie Chart
+            var ctx = document.getElementById('pieChart').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [{
+                        label: 'My Dataset',
+                        data: [12, 19, 3, 5, 2, 3],
+                        backgroundColor: [
+                            '#ff6384',
+                            '#36a2eb',
+                            '#ffce56',
+                            '#4bc0c0',
+                            '#9966ff',
+                            '#ff9f40'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        </script>
+</body>
+
+</html>
