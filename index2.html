@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style>
+    body {
+  background-color: #f4f6f9;
+}
+
+.container{
+    margin-top: 30px !important;
+}
+
+.tab-btn{
+    margin-bottom: 30px;
+}
+
+.card-header .nav-tabs>li.active>a {
+            /* Active tab background color */
+            border-bottom: 2px solid #007dff;
+            color: black !important;
+            /* Active tab text color */
+        }
+
+.panel {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 20px;
+}
+
+.panel-body {
+  padding: 20px;
+}
+
+.panel-body h2, .panel-body h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.panel-body p {
+  margin: 0 0 10px;
+}
+
+.panel-body button {
+  margin-bottom: 20px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row tab-btn">
+      <div class="col-md-12 text-left">
+        <button class="btn btn-default"><span class="glyphicon glyphicon-dashboard"> Dashboard</button>
+        <button class="btn btn-default">Components</button>
+        <button class="btn btn-default">Pages</button>
+
+      </div>
+    </div>
+
+    <div class="card tab-content-header tab-btn">
+        <div class="card-header">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
+                <li><a href="#training" data-toggle="tab">Training</a></li>
+                <li><a href="#history" data-toggle="tab">History</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>0.0345 BTC</h2>
+            <p>Bitcoin Earnings</p>
+            <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus...</p>
+            <button class="btn btn-primary">View Statements</button>
+            <div id="bitcoinChart" style="height: 200px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>0.0873 ETH</h2>
+            <p>Ethereum Wallet</p>
+            <p>Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus...</p>
+            <button class="btn btn-primary">View Report</button>
+            <div id="ethereumChart" style="height: 200px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>29,931</h3>
+            <p>Male Visitors</p>
+            <p>Curabitur ullamcorper ultricies nisi.</p>
+            <div id="maleVisitorsChart" style="height: 100px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>45,231</h3>
+            <p>Female Visitors</p>
+            <p>Curabitur ullamcorper ultricies nisi.</p>
+            <div id="femaleVisitorsChart" style="height: 100px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>822,490</h3>
+            <p>Impressions</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>465,183</h3>
+            <p>Page Visits</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>781,524</h3>
+            <p>Commission</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3>369,657</h3>
+            <p>Earnings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script>
+    $(document).ready(function() {
+  var bitcoinChart = new CanvasJS.Chart("bitcoinChart", {
+    animationEnabled: true, 
+    theme: "light2",
+    data: [{        
+      type: "line",  
+      dataPoints: [      
+        { y: 300, label: "Jan" },
+        { y: 280, label: "Feb" },
+        { y: 250, label: "Mar" },
+        { y: 290, label: "Apr" },
+        { y: 320, label: "May" },
+        { y: 310, label: "Jun" }
+      ]
+    }]
+  });
+  bitcoinChart.render();
+
+  var ethereumChart = new CanvasJS.Chart("ethereumChart", {
+    animationEnabled: true,
+    theme: "light2",
+    data: [{        
+      type: "column",  
+      dataPoints: [      
+        { y: 200, label: "Jan" },
+        { y: 220, label: "Feb" },
+        { y: 250, label: "Mar" },
+        { y: 230, label: "Apr" },
+        { y: 240, label: "May" },
+        { y: 260, label: "Jun" }
+      ]
+    }]
+  });
+  ethereumChart.render();
+
+  var maleVisitorsChart = new CanvasJS.Chart("maleVisitorsChart", {
+    animationEnabled: true,
+    theme: "light2",
+    data: [{        
+      type: "line",  
+      dataPoints: [      
+        { y: 80, label: "Jan" },
+        { y: 90, label: "Feb" },
+        { y: 100, label: "Mar" },
+        { y: 110, label: "Apr" },
+        { y: 120, label: "May" },
+        { y: 130, label: "Jun" }
+      ]
+    }]
+  });
+  maleVisitorsChart.render();
+
+  var femaleVisitorsChart = new CanvasJS.Chart("femaleVisitorsChart", {
+    animationEnabled: true,
+    theme: "light2",
+    data: [{        
+      type: "line",  
+      dataPoints: [      
+        { y: 60, label: "Jan" },
+        { y: 70, label: "Feb" },
+        { y: 80, label: "Mar" },
+        { y: 90, label: "Apr" },
+        { y: 100, label: "May" },
+        { y: 110, label: "Jun" }
+      ]
+    }]
+  });
+  femaleVisitorsChart.render();
+});
+
+  </script>
+</body>
+</html>
