@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Training History</h2>
+        <div class="table-controls">
+            <button>All (35)</button>
+            <button>Passed (20)</button>
+            <button>Failed (10)</button>
+            <button>Not Attended (5)</button>
+            <input type="search" placeholder="Search Trainings">
+            <select>
+                <option value="10">Display 10 records</option>
+                <option value="25">Display 25 records</option>
+                <option value="50">Display 50 records</option>
+            </select>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Training Name</th>
+                    <th>Schedule</th>
+                    <th>Attended Date</th>
+                    <th>Questions / Answers</th>
+                    <th>Passing %</th>
+                    <th>Score %</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Row 1 -->
+                <tr>
+                    <td>Information Security Training 2021 - 22 H2</td>
+                    <td>07 Oct 2021 - 31 March 2022</td>
+                    <td>22 Oct 2021</td>
+                    <td>20 / 16</td>
+                    <td>80%</td>
+                    <td>85%</td>
+                    <td class="status-pass">Pass</td>
+                    <td>
+                        <button class="action-btn">📄</button>
+                        <button class="action-btn">🔍</button>
+                    </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr>
+                    <td>Data Privacy Awareness Training and Assessment</td>
+                    <td>07 Oct 2021 - 31 March 2022</td>
+                    <td>22 Oct 2021</td>
+                    <td>10 / 07</td>
+                    <td>80%</td>
+                    <td>36%</td>
+                    <td class="status-fail">Fail</td>
+                    <td>
+                        <button class="action-btn">📄</button>
+                        <button class="action-btn">🔍</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
