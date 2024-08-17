@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <style>
+                #myChart {
+            width: 400px; /* Set the width to 200px */
+            height: 400px; /* Set the height to 200px */
+        }
+    </style>
+</head>
+<body>
+    <div id="myChart"></div>
+
+    <script>
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            const data = google.visualization.arrayToDataTable([
+                ['Country', 'Mhl'],
+                ['Italy', 77.0],
+                ['France', 48.0],
+
+            ]);
+
+            const options = {
+                title: 'World Wide Wine Production',
+                pieHole: 0.4, // This creates the donut effect
+                pieSliceText: 'slices', // Display labels inside slices
+                legend: { position: 'none' } // Hide the legend to emphasize the donut chart
+            };
+
+            const chart = new google.visualization.PieChart(document.getElementById('myChart'));
+            chart.draw(data, options);
+        }
+    </script>
+</body>
+</html>
