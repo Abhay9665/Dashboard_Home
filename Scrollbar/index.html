@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Width Div with Hidden Scrollbar</title>
+    <style>
+        /* Ensure body and html take up full height */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Hide the scrollbar */
+        }
+
+        /* Full-width container div */
+        .container {
+            width: 100vw;
+            height: 100vh;
+            overflow-y: scroll; /* Enable scrolling */
+            scrollbar-width: none; /* Firefox: hide scrollbar */
+        }
+
+        /* Hide scrollbar in WebKit browsers (Chrome, Safari) */
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Example content */
+        .content {
+            padding: 20px;
+            background-color: lightblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <!-- Generate a large amount of text to simulate thousands of lines of code -->
+            <pre>
+                <!-- You can replace this content with your actual code -->
+                Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                 Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code Line 1: Sample Code
+                Line 2: Sample Code
+                Line 3: Sample Code
+                ...
+                Line 1000: Sample Code
+                Line 1000: Sample Code
+            </pre>
+        </div>
+    </div>
+</body>
+</html>
