@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Dashboard</title>
+    <!-- Bootstrap 3.3.7 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        .training-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            padding: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .training-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .training-label {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background-color: #008cba;
+            color: #fff;
+            border-radius: 3px;
+            padding: 8px 14px;
+            font-size: 12px;
+            border: 1px solid #006994; /* Optional border color */
+        }
+
+        .training-content {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .training-content h3 {
+            margin-top: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .training-info {
+            margin: 10px 0;
+            color: #555;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px; /* Adjust spacing between items */
+        }
+
+        .training-info span {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .training-info i {
+            margin-right: 5px;
+        }
+
+        .btn-start {
+            background-color: #008cba;
+            color: #fff;
+            border-radius: 4px;
+            padding: 5px 15px;
+            position: relative;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .training-card {
+                flex-direction: row;
+            }
+
+            .training-card img {
+                width: 437px;
+                height: auto;
+            }
+
+            .training-content {
+                padding: 15px 20px;
+            }
+
+            .btn-start {
+                position: absolute;
+                bottom: 25px;
+                display: block;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .btn-start {
+                margin-top: 10px;
+                display: block;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Active Trainings</h2>
+        <div class="training-card">
+            <span class="training-label">Phishing</span>
+            <img src="https://img.freepik.com/free-photo/development-knowledge-study-education-concept_53876-144838.jpg" alt="Phishing Awareness Training">
+            <div class="training-content">
+                <h3>Test Phishing Demo - 10</h3>
+                <div class="training-info">
+                    <span><i class="glyphicon glyphicon-time"></i> 10 Minutes</span>
+                    <span><i class="glyphicon glyphicon-calendar"></i> 28 Jul 2024 To 27 Aug 2024</span>
+                    <span><i class="glyphicon glyphicon-ok"></i> Passing 90%</span>
+                    <span><i class="glyphicon glyphicon-hourglass"></i> 07 Days Left</span>
+                </div>
+                <button class="btn btn-start">Start</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap 3.3.7 JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>
