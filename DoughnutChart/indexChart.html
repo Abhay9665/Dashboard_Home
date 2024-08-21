@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doughnut Chart with Labels Positioned</title>
+    <title>Doughnut Chart with Categories Below</title>
     <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Chart.js Datalabels Plugin -->
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <style>
         .chart-container {
-            width: 394px;
-            height: 239px;
+            width: 150px;
+            height: 250px;
             margin: auto;
-            position: relative; /* To position the labels and title */
-        }
-        .chart-title {
-            text-align: center;
-            font-size: 16px;
-            margin-top: 10px; /* Space between chart and title */
+            position: relative;
         }
         .chart-legend {
-            position: absolute;
-            bottom: 30px; /* Adjust as needed to fit */
-            right: 0;
-            left: 10%;
-            width: 100%;
-            text-align: right;
+            display: flex;
+            justify-content: center;
+            margin-top: -40px;
             font-size: 16px;
+            text-align: center;
+        }
+        .chart-legend div {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+        .chart-legend span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
     <div class="chart-container">
-        <canvas id="myDoughnutChart"></canvas>
-        <div class="chart-legend">
-            <div><span style="background-color: #FF6384; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px;"></span>Category A</div>
-            <div><span style="background-color: #36A2EB; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px;"></span>Category B</div>
+        <canvas id="myDoughnutChart" width="150" height="250"></canvas>
+    </div>
+    <!-- Categories Legend Positioned Below the Chart -->
+    <div class="chart-legend">
+        <div>
+            <span style="background-color: #FF6384;"></span>Category A
+        </div>
+        <div>
+            <span style="background-color: #36A2EB;"></span>Category B
         </div>
     </div>
 
@@ -54,8 +64,8 @@
                 }]
             },
             options: {
-                responsive: true,
-                maintainAspectRatio: false,
+                responsive: false, // Disable responsiveness to keep fixed size
+                maintainAspectRatio: false, // Maintain fixed aspect ratio
                 plugins: {
                     legend: {
                         display: false, // Hide default legend
@@ -63,7 +73,6 @@
                     tooltip: {
                         enabled: false // Disable tooltip
                     },
-                    
                     datalabels: {
                         color: '#fff',
                         formatter: (value, ctx) => {
@@ -77,7 +86,7 @@
                         },
                         font: {
                             weight: 'bold',
-                            size: 12,  // Adjust size as needed
+                            size: 12,
                         }
                     }
                 }
