@@ -58,7 +58,7 @@
                 labels: ['Category A', 'Category B'],
                 datasets: [{
                     label: 'My Dataset',
-                    data: [5, 20],
+                    data: [10, 20],
                     backgroundColor: ['#FF6384', '#36A2EB'],
                     hoverOffset: 4
                 }]
@@ -81,7 +81,7 @@
                             dataArr.forEach(data => {
                                 sum += data;
                             });
-                            const percentage = Math.round((value * 100) / sum) + "%";
+                            const percentage = (value / sum * 100).toFixed(2) + "%";
                             return percentage;
                         },
                         font: {
