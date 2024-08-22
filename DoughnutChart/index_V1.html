@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doughnut Chart with Categories Below</title>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js Datalabels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <style>
+        .chart-container {
+            width: 150px;
+            height: 250px;
+            margin: auto;
+            position: relative;
+        }
+        .chart-legend {
+            display: flex;
+            justify-content: center;
+            margin-top: -40px;
+            font-size: 16px;
+            text-align: center;
+        }
+        .chart-legend div {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
+        }
+        .chart-legend span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <canvas id="myDoughnutChart" width="150" height="250"></canvas>
+    </div>
+    <!-- Categories Legend Positioned Below the Chart -->
+    <div class="chart-legend">
+        <div>
+            <span style="background-color: #FF6384;"></span>Category A
+        </div>
+        <div>
+            <span style="background-color: #36A2EB;"></span>Category B
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        const myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Category A', 'Category B'],
+                datasets: [{
+                    label: 'My Dataset',
+                    data: [10, 20],
+                    backgroundColor: ['#FF6384', '#36A2EB'],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: false, // Disable responsiveness to keep fixed size
+                maintainAspectRatio: false, // Maintain fixed aspect ratio
+                plugins: {
+                    legend: {
+                        display: false, // Hide default legend
+                    },
+                    tooltip: {
+                        enabled: false // Disable tooltip
+                    },
+                    datalabels: {
+                        color: '#fff',
+                        formatter: (value, ctx) => {
+                            let sum = 0;
+                            const dataArr = ctx.chart.data.datasets[0].data;
+                            dataArr.forEach(data => {
+                                sum += data;
+                            });
+                            const percentage = Math.round((value * 100) / sum) + "%";
+                            return percentage;
+                        },
+                        font: {
+                            weight: 'bold',
+                            size: 12,
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+</body>
+</html>
