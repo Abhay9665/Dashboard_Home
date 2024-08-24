@@ -1,298 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finance Dashboard</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <style>
-    body {
-  background-color: #f4f6f9;
-}
-
-.container{
-    margin-top: 30px !important;
-}
-
-.tab-btn{
-    margin-bottom: 30px;
-}
-
-.card-header .nav-tabs>li.active>a {
-            /* Active tab background color */
-            border-bottom: 2px solid #007dff;
-            color: black !important;
-            /* Active tab text color */
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Progress Carousel</title>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
         }
 
-.panel {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: none;
-  margin-bottom: 20px;
-}
+        .carousel-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
 
-.panel-body {
-  padding: 20px;
-}
+        .carousel-control {
+            width: 5%;
+            background-color: transparent;
+        }
 
-.panel-body h2, .panel-body h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.panel-body p {
-  margin: 0 0 10px;
-}
+        .employee-details {
+            text-align: center;
+            margin: 20px 0;
+        }
 
-.panel-body button {
-  margin-bottom: 20px;
-}
+        .employee-details img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #dcdcdc;
+        }
 
-  </style>
+        .employee-details h4 {
+            margin: 10px 0 5px;
+            font-size: 20px;
+        }
+
+        .employee-details p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .training-progress {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .training-progress .assigned {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .training-progress .completed {
+            color: #007bff;
+        }
+
+        .training-progress .not-completed {
+            color: #ff3366;
+        }
+
+        .training-progress span {
+            font-size: 18px;
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
 </head>
+
 <body>
-  <div class="container">
-    <div class="row tab-btn">
-      <div class="col-md-12 text-left">
-        <button class="btn btn-default"><span class="glyphicon glyphicon-dashboard"> Dashboard</button>
-        <button class="btn btn-default">Components</button>
-        <button class="btn btn-default">Pages</button>
+    <div id="trainingCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#trainingCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#trainingCarousel" data-slide-to="1"></li>
+            <li data-target="#trainingCarousel" data-slide-to="2"></li>
+        </ol>
 
-      </div>
-    </div>
-
-    <div class="card tab-content-header tab-btn">
-        <div class="card-header">
-            <ul class="nav nav-tabs">
-                <li class="active"><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
-                <li><a href="#training" data-toggle="tab">Training</a></li>
-                <li><a href="#history" data-toggle="tab">History</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="row card">
-        <div class="card tab-content-card">
-
-            <div class="tab-content">
-                <!-- Dashboard Tab -->
-                <div class="tab-pane fade in active" id="dashboard">
-                    <h2>Dashboard</h2>
-                    <div class="row">
-                        <!-- Card 1: Current Progress -->
-                        <div class="col-sm-8">
-                            <div class="card tab-content-body card-hover-eff">
-                                <div class="card-body">
-                                    <h4 class="card-title">Current Progress</h4>
-                                    <div class="progress">
-                                        <div class="progress-bar" role="progressbar" style="width: 70%;"
-                                            aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
-                                            70%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 2: Pie Chart -->
-                        <div class="col-sm-4">
-                            <div class="card tab-content-body Pie-Chart card-hover-eff">
-                                <div class="card-body">
-                                    <h6 class="card-title">Pie Chart</h6>
-                                    <canvas id="pieChart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card 3: Data Table -->
-                        <!-- <div class="col-sm-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <h4 class="card-title">Data Table</h4>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Name</th>
-                                            <th>Age</th>
-                                            <th>City</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>John Doe</td>
-                                            <td>28</td>
-                                            <td>New York</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Jane Smith</td>
-                                            <td>32</td>
-                                            <td>Los Angeles</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Emily Johnson</td>
-                                            <td>25</td>
-                                            <td>Chicago</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Michael Brown</td>
-                                            <td>40</td>
-                                            <td>San Francisco</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div> -->
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <!-- First Slide -->
+            <div class="item active">
+                <div class="header">
+                    <span class="glyphicon glyphicon-user"></span> Training Progress
+                </div>
+                <div class="employee-details">
+                    <img src="https://via.placeholder.com/100" alt="Employee Avatar">
+                    <h4>Aparna Gurav</h4>
+                    <p>Emp ID: 5234123</p>
+                </div>
+                <div class="training-progress">
+                    <div class="assigned">
+                        5 Trainings Assigned
                     </div>
-                    <!-- Full-Width Table -->
-                    <div class="card tab-content-body card-hover-eff">
-                        <div class="card-body">
-                            <h4 class="card-title">Detailed Data Table</h4>
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Address</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>john.doe@example.com</td>
-                                        <td>(123) 456-7890</td>
-                                        <td>123 Elm St, New York, NY</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Jane</td>
-                                        <td>Smith</td>
-                                        <td>jane.smith@example.com</td>
-                                        <td>(987) 654-3210</td>
-                                        <td>456 Oak St, Los Angeles, CA</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Emily</td>
-                                        <td>Johnson</td>
-                                        <td>emily.johnson@example.com</td>
-                                        <td>(555) 123-4567</td>
-                                        <td>789 Pine St, Chicago, IL</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Michael</td>
-                                        <td>Brown</td>
-                                        <td>michael.brown@example.com</td>
-                                        <td>(444) 555-6789</td>
-                                        <td>101 Maple St, San Francisco, CA</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class="completed">
+                        2 Completed
+                        <span>Completed</span>
+                    </div>
+                    <div class="not-completed">
+                        3 Not Completed
+                        <span>Not Completed</span>
                     </div>
                 </div>
-                <!-- Training Tab -->
-                <div class="tab-pane fade" id="training">
-                    <h2>Training</h2>
-                    <p>Training content goes here.</p>
-                    <!-- Add additional cards, charts, or information as needed for this tab -->
+            </div>
+
+            <!-- Second Slide -->
+            <div class="item">
+                <div class="header">
+                    <span class="glyphicon glyphicon-user"></span> Training Progress
                 </div>
-                <!-- History Tab -->
-                <div class="tab-pane fade" id="history">
-                    <h2>History</h2>
-                    <p>History content goes here.</p>
-                    <!-- Add additional cards, charts, or information as needed for this tab -->
+                <div class="employee-details">
+                    <img src="https://via.placeholder.com/100" alt="Employee Avatar">
+                    <h4>John Doe</h4>
+                    <p>Emp ID: 5234124</p>
+                </div>
+                <div class="training-progress">
+                    <div class="assigned">
+                        7 Trainings Assigned
+                    </div>
+                    <div class="completed">
+                        5 Completed
+                        <span>Completed</span>
+                    </div>
+                    <div class="not-completed">
+                        2 Not Completed
+                        <span>Not Completed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Slide -->
+            <div class="item">
+                <div class="header">
+                    <span class="glyphicon glyphicon-user"></span> Training Progress
+                </div>
+                <div class="employee-details">
+                    <img src="https://via.placeholder.com/100" alt="Employee Avatar">
+                    <h4>Jane Smith</h4>
+                    <p>Emp ID: 5234125</p>
+                </div>
+                <div class="training-progress">
+                    <div class="assigned">
+                        4 Trainings Assigned
+                    </div>
+                    <div class="completed">
+                        3 Completed
+                        <span>Completed</span>
+                    </div>
+                    <div class="not-completed">
+                        1 Not Completed
+                        <span>Not Completed</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        </div>
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#trainingCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#trainingCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <script>
-    $(document).ready(function() {
-  var bitcoinChart = new CanvasJS.Chart("bitcoinChart", {
-    animationEnabled: true, 
-    theme: "light2",
-    data: [{        
-      type: "line",  
-      dataPoints: [      
-        { y: 300, label: "Jan" },
-        { y: 280, label: "Feb" },
-        { y: 250, label: "Mar" },
-        { y: 290, label: "Apr" },
-        { y: 320, label: "May" },
-        { y: 310, label: "Jun" }
-      ]
-    }]
-  });
-  bitcoinChart.render();
-
-  var ethereumChart = new CanvasJS.Chart("ethereumChart", {
-    animationEnabled: true,
-    theme: "light2",
-    data: [{        
-      type: "column",  
-      dataPoints: [      
-        { y: 200, label: "Jan" },
-        { y: 220, label: "Feb" },
-        { y: 250, label: "Mar" },
-        { y: 230, label: "Apr" },
-        { y: 240, label: "May" },
-        { y: 260, label: "Jun" }
-      ]
-    }]
-  });
-  ethereumChart.render();
-
-  var maleVisitorsChart = new CanvasJS.Chart("maleVisitorsChart", {
-    animationEnabled: true,
-    theme: "light2",
-    data: [{        
-      type: "line",  
-      dataPoints: [      
-        { y: 80, label: "Jan" },
-        { y: 90, label: "Feb" },
-        { y: 100, label: "Mar" },
-        { y: 110, label: "Apr" },
-        { y: 120, label: "May" },
-        { y: 130, label: "Jun" }
-      ]
-    }]
-  });
-  maleVisitorsChart.render();
-
-  var femaleVisitorsChart = new CanvasJS.Chart("femaleVisitorsChart", {
-    animationEnabled: true,
-    theme: "light2",
-    data: [{        
-      type: "line",  
-      dataPoints: [      
-        { y: 60, label: "Jan" },
-        { y: 70, label: "Feb" },
-        { y: 80, label: "Mar" },
-        { y: 90, label: "Apr" },
-        { y: 100, label: "May" },
-        { y: 110, label: "Jun" }
-      ]
-    }]
-  });
-  femaleVisitorsChart.render();
-});
-
-  </script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+
 </html>
