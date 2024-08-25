@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Progress Carousel</title>
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .carousel-inner {
+            max-width: 600px;
+            height: 360px;
+            margin: 80px auto;
+            padding: 50px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .carousel-control {
+            width: 5%;
+            background-color: transparent;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+        }
+
+        .carousel-control.left {
+            left: -40px;
+        }
+
+        .carousel-control.right {
+            right: -40px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .slide-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .employee-details {
+            flex: 1;
+            text-align: left;
+        }
+
+        .employee-details img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid #dcdcdc;
+        }
+
+        .employee-details h4 {
+            margin: 10px 0 5px;
+            font-size: 20px;
+        }
+
+        .employee-details p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .training-progress {
+            flex: 1;
+            text-align: right;
+        }
+
+        .training-progress .assigned {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .training-progress .completed {
+            color: #007bff;
+        }
+
+        .training-progress .not-completed {
+            color: #ff3366;
+        }
+
+        .training-progress span {
+            font-size: 18px;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .carousel-control.left,
+        .carousel-control.right {
+            width: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #333;
+            text-shadow: none;
+            background: none;
+        }
+
+        .carousel-control.left {
+            left: 15px;
+        }
+
+        .carousel-control.right {
+            right: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="trainingCarousel" class="carousel slide" data-ride="carousel">
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <!-- First Slide -->
+            <div class="item active">
+                <div class="header">
+                    <span class="glyphicon glyphicon-user"></span> Training Progress
+                </div>
+                <div class="slide-content">
+                    <div class="employee-details">
+                        <img src="https://via.placeholder.com/100" alt="Employee Avatar">
+                        <h4>Aparna Gurav</h4>
+                        <p>Emp ID: 5234123</p>
+                    </div>
+                    <div class="training-progress">
+                        <div class="assigned">
+                            5 Trainings Assigned
+                        </div>
+                        <div class="completed">
+                            2 Completed
+                            <span>Completed</span>
+                        </div>
+                        <div class="not-completed">
+                            3 Not Completed
+                            <span>Not Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Slide -->
+            <div class="item">
+                <div class="header">
+                    <span class="glyphicon glyphicon-user"></span> Training Progress
+                </div>
+                <div class="slide-content">
+                    <div class="employee-details">
+                        <img src="https://via.placeholder.com/100" alt="Employee Avatar">
+                        <h4>John Doe</h4>
+                        <p>Emp ID: 5234124</p>
+                    </div>
+                    <div class="training-progress">
+                        <div class="assigned">
+                            7 Trainings Assigned
+                        </div>
+                        <div class="completed">
+                            5 Completed
+                            <span>Completed</span>
+                        </div>
+                        <div class="not-completed">
+                            2 Not Completed
+                            <span>Not Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Slide -->
+            <div class="item">
+                <div class="header">
+                    <span class="glyphicon glyphicon-user"></span> Training Progress
+                </div>
+                <div class="slide-content">
+                    <div class="employee-details">
+                        <img src="https://via.placeholder.com/100" alt="Employee Avatar">
+                        <h4>Jane Smith</h4>
+                        <p>Emp ID: 5234125</p>
+                    </div>
+                    <div class="training-progress">
+                        <div class="assigned">
+                            4 Trainings Assigned
+                        </div>
+                        <div class="completed">
+                            3 Completed
+                            <span>Completed</span>
+                        </div>
+                        <div class="not-completed">
+                            1 Not Completed
+                            <span>Not Completed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Left and right controls inside the carousel-inner -->
+            <a class="left carousel-control" href="#trainingCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#trainingCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>
